@@ -1,5 +1,7 @@
 'use strict';
-
+// Get the input fields
+const nameInput = document.querySelector('input[name="fullname"]');
+const subjectInput = document.querySelector('input[name="subject"');
 
 
 // element toggle function
@@ -19,6 +21,8 @@ const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
+
+
 
 select.addEventListener("click", function () { elementToggleFunc(this); });
 
@@ -93,6 +97,27 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
+nameInput.addEventListener('input', ()=>{
+  subjectInput.value = `${nameInput.value} sent you a message from your portfolio`;
+});
+
+form.addEventListener('submit',(e)=>{
+  subjectInput.value = `${nameInput.value} sent you a message from your portfolio`; 
+});
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      window.location.href = './loading.html';
+    })
+    .catch((error) => console.error(error));
+});
 
 
 // page navigation variables
