@@ -173,7 +173,7 @@ body { background: var(--smoky-black);
 \*-----------------------------------*/
 
 #avatar{
-  border-radius: 10px;
+  border-radius: 10%;
 }
 
 .sidebar,
